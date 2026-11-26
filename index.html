@@ -3,35 +3,245 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f7f3">
-  <title>Gradegarden — Your grades, growing clearer</title>
+  <meta name="theme-color" content="#f3f6f4">
+  <meta name="description" content="Plan final exam scores, calculate course grades, and estimate your GPA with Gradegarden.">
+  <link rel="icon" type="image/svg+xml" href="assets/gradegarden-mark.svg">
+  <title>Gradegarden — Grade planning, made clear</title>
   <style>
-    :root{--paper:#f6f7f3;--white:#fff;--ink:#202821;--muted:#778077;--line:#e6e9e2;--green:#246b50;--dark:#174b38;--mint:#e5f1e9;--coral:#e78670;--blue:#85b8c5;--shadow:0 16px 44px rgba(32,48,38,.055)}
-    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select{font:inherit}button{cursor:pointer}.shell{display:grid;grid-template-columns:238px minmax(0,1fr);min-height:100vh}.sidebar{background:#fff;border-right:1px solid var(--line);padding:25px 16px 20px;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:10px;padding:3px 10px 27px;color:var(--ink);text-decoration:none}.brand-mark{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:var(--green);color:#fff}.brand-mark svg{width:20px;height:20px}.brand-name{font-size:17px;font-weight:750}.brand-name span{color:var(--green)}.side-label{padding:0 11px;margin:4px 0 8px;color:#9aa198;text-transform:uppercase;letter-spacing:.1em;font-size:10px;font-weight:750}.nav{display:grid;gap:4px}.nav-btn{border:0;background:transparent;color:#69736a;width:100%;padding:10px 11px;border-radius:6px;text-align:left;display:flex;align-items:center;gap:11px}.nav-btn svg{width:17px;height:17px}.nav-btn:hover{background:#f5f7f2;color:var(--ink)}.nav-btn.active{color:var(--dark);background:var(--mint);font-weight:700}.sidebar-bottom{margin-top:auto}.tip{border-radius:7px;padding:14px;background:#f3f5ed;color:#596558;font-size:12px}.tip-icon{color:#8fa74b;font-size:17px;margin-bottom:5px}.tip strong{display:block;color:#313c32;font-size:12px;margin-bottom:3px}.sidebar-foot{margin:14px 10px 0;font-size:10px;color:#a1a79f}
-    main{min-width:0;padding:0 34px 48px}.topbar{height:74px;display:flex;justify-content:flex-end;align-items:center;border-bottom:1px solid var(--line);gap:14px}.term-pill{display:flex;align-items:center;gap:7px;color:#768078;font-size:12px}.term-pill svg{width:15px;height:15px}.lang-select{border:1px solid var(--line);color:#47524a;background:#fff;border-radius:5px;padding:7px 27px 7px 10px;font-size:12px}.main-inner{width:min(1080px,100%);margin:0 auto}.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:30px 0 23px}.eyebrow{color:var(--green);text-transform:uppercase;letter-spacing:.12em;font-size:10px;font-weight:780;margin-bottom:6px}h1{font-size:26px;letter-spacing:-.8px;line-height:1.2;margin:0;font-weight:740}.subhead{margin:7px 0 0;color:var(--muted);font-size:13px}.head-decoration{display:flex;align-items:center;gap:9px;color:#879078;font-size:11px}.leaf-stamp{width:36px;height:36px;display:grid;place-items:center;background:#edf2df;border-radius:50%;color:#75894d}.leaf-stamp svg{width:20px;height:20px}.view{display:none}.view.active{display:block}.panel{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow)}.calculator-layout{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(280px,.88fr);gap:16px}.form-panel{padding:21px 22px 23px}.panel-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:18px}.panel-heading h2{margin:0;font-size:15px}.panel-heading p{margin:4px 0 0;color:var(--muted);font-size:11px}.step{font-size:10px;font-weight:730;color:#83907e;background:#f3f5ef;border-radius:4px;padding:5px 7px;white-space:nowrap}.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 13px}.field label{display:flex;justify-content:space-between;color:#535e55;font-size:11px;font-weight:650;margin-bottom:6px}.input-wrap{display:flex;align-items:center;border:1px solid #e4e8e0;border-radius:5px;background:#fff}.input-wrap:focus-within{border-color:#75a68e;box-shadow:0 0 0 3px rgba(36,107,80,.09)}.input-wrap input,.input-wrap select{border:0;outline:0;width:100%;min-width:0;padding:9px 10px;color:#29332c;background:transparent}.suffix{padding:0 10px 0 0;color:#9aa198;font-size:11px}.divider{height:1px;background:var(--line);margin:18px 0 15px}.inline-options{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#68736a;font-size:11px}.check-line{display:inline-flex;align-items:center;gap:7px;cursor:pointer}.check-line input{accent-color:var(--green);width:14px;height:14px;margin:0}.hint-link{border:0;background:none;color:var(--green);padding:0;font-size:11px}
-    .result-panel{background:#edf4ec;border:1px solid #e5eee4;border-radius:8px;padding:21px 22px 19px;display:flex;flex-direction:column;min-height:100%}.result-kicker{color:#6a7c6b;font-size:11px;font-weight:650}.result-grade{font-size:52px;line-height:1.08;letter-spacing:-2px;color:var(--dark);font-weight:760;margin:12px 0 3px}.result-caption{color:#708174;font-size:12px}.meter{height:7px;width:100%;background:#d8e4d9;border-radius:8px;overflow:hidden;margin:19px 0 8px}.meter span{display:block;height:100%;width:0;background:var(--green);border-radius:inherit;transition:width .3s ease}.meter-labels{display:flex;justify-content:space-between;color:#8a998b;font-size:9px}.result-note{margin:20px 0 0;padding:11px 12px;border-left:2px solid #a4bd78;background:rgba(255,255,255,.56);color:#5f6e61;font-size:11px}.result-footer{display:flex;gap:14px;margin-top:auto;padding-top:21px}.mini-stat{flex:1;border-top:1px solid #d8e5d8;padding-top:10px}.mini-stat span{display:block;color:#849287;font-size:10px}.mini-stat strong{display:block;color:#394b3c;font-size:15px;margin-top:3px}.under-grid{margin-top:17px;display:grid;grid-template-columns:1fr 1fr;gap:16px}.info-panel{padding:17px 19px;display:flex;align-items:center;gap:13px;box-shadow:none}.info-icon{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:6px}.info-icon.coral{background:#faeee8;color:#c3765f}.info-icon.blue{background:#eaf3f5;color:#518595}.info-copy strong{display:block;font-size:11px;margin-bottom:2px}.info-copy span{display:block;color:#849087;font-size:10px}
-    .gpa-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 19px;border-bottom:1px solid var(--line)}.gpa-toolbar h2{margin:0;font-size:14px}.toolbar-actions{display:flex;align-items:center;gap:8px}.select-compact{border:1px solid var(--line);border-radius:5px;background:#fff;padding:7px 28px 7px 9px;color:#4f5a51;font-size:11px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid #dfe5dc;background:#fff;color:#47554a;padding:7px 10px;border-radius:5px;font-size:11px;font-weight:650}.table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:680px}th{text-align:left;color:#89938a;text-transform:uppercase;letter-spacing:.08em;font-size:9px;font-weight:700;padding:11px 15px;background:#fbfcfa}td{border-top:1px solid #eff1ed;padding:9px 15px}td input,td select{border:1px solid transparent;background:transparent;border-radius:4px;outline:0;padding:6px 7px;color:#344037;width:100%;font-size:11px}td input:focus,td select:focus{border-color:#e3e9e1;background:#fff}td input[type=number]{max-width:88px}.course-name{min-width:145px;font-weight:600}.grade-letter{color:var(--green);font-weight:750}.remove-btn{border:0;background:none;color:#b2bab1;font-size:17px;line-height:1;padding:3px 6px}.remove-btn:hover{color:#c86d60}.table-bottom{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-top:1px solid var(--line)}.add-course{border:0;background:none;color:var(--green);font-size:11px;font-weight:700;padding:5px 0}.course-count{color:#939b92;font-size:10px}.gpa-summary{display:grid;grid-template-columns:1.05fr 1fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:15px}.gpa-stat{background:#fff;padding:15px 17px}.gpa-stat span{color:#879188;font-size:10px;display:block}.gpa-stat strong{font-size:21px;display:block;margin-top:4px;color:#354239}.gpa-stat.primary-stat{background:#edf4ec}.gpa-stat.primary-stat strong{color:var(--dark);font-size:27px}.gpa-footnote{margin:12px 2px 0;color:#969e95;font-size:10px}.progress-panel{padding:20px;margin-top:16px}.progress-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:17px;align-items:end;height:118px}.bar-item{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:6px}.bar-value{color:#68766a;font-size:10px;font-weight:650}.bar{width:min(34px,65%);min-height:6px;background:#c8ddcd;border-radius:4px 4px 2px 2px}.bar-label{color:#8b948c;font-size:9px}.hidden{display:none!important}
-    @media(max-width:900px){.shell{grid-template-columns:68px minmax(0,1fr)}.sidebar{padding:20px 9px;align-items:center}.brand{padding:3px 0 27px}.brand-name,.side-label,.nav-text,.sidebar-bottom,.sidebar-foot{display:none}.nav{width:100%}.nav-btn{justify-content:center;padding:11px 5px}main{padding:0 23px 40px}}
-    @media(max-width:680px){.shell{display:block;padding-bottom:64px}.sidebar{position:fixed;z-index:5;bottom:0;left:0;right:0;height:60px;padding:5px 12px;border-right:0;border-top:1px solid var(--line)}.brand,.sidebar-bottom,.sidebar-foot,.side-label{display:none}.nav{display:flex;justify-content:space-around;gap:4px;max-width:430px;margin:auto}.nav-btn{width:auto;min-width:56px;justify-content:center;padding:10px 15px}main{padding:0 15px 25px}.topbar{height:59px}.page-head{padding:24px 0 18px}.head-decoration{display:none}.calculator-layout{grid-template-columns:1fr}.under-grid{grid-template-columns:1fr;gap:9px}.form-panel,.result-panel{padding:17px}.gpa-toolbar{align-items:flex-start;flex-direction:column}.toolbar-actions{width:100%;flex-wrap:wrap}.gpa-summary{grid-template-columns:1fr 1fr}.field-grid{gap:11px 8px}.term-pill{display:none}}
+    :root {
+      --paper: #f3f6f4;
+      --white: #fff;
+      --ink: #1f302a;
+      --muted: #69776f;
+      --line: #dfe7e2;
+      --green: #27644f;
+      --green-dark: #194b3a;
+      --mint: #e6efea;
+      --lime: #cbdc87;
+      --coral: #d8836d;
+      --yellow: #dfb958;
+      --blue: #6c9daa;
+      --shadow: 0 5px 18px rgba(31, 48, 42, .035);
+      --radius: 6px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 14px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    .shell { display: grid; grid-template-columns: 238px minmax(0,1fr); min-height: 100vh; }
+    .sidebar { background: #fff; border-right: 1px solid var(--line); padding: 25px 16px 20px; display: flex; flex-direction: column; }
+    .brand { display: flex; align-items: center; gap: 10px; padding: 3px 10px 27px; color: var(--ink); text-decoration: none; }
+    .brand-mark { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 7px; background: #214f40; color: white; }
+    .brand-mark svg { width: 22px; height: 22px; }
+    .brand-name { font-size: 17px; font-weight: 720; letter-spacing: 0; }
+    .brand-name span { color: #65786c; font-weight: 540; }
+    .side-label { padding: 0 11px; margin: 4px 0 8px; color: #9aa198; text-transform: uppercase; letter-spacing: .1em; font-size: 10px; font-weight: 750; }
+    .nav { display: grid; gap: 4px; }
+    .nav-btn { border: 0; background: transparent; color: #69736a; width: 100%; padding: 10px 11px; border-radius: 6px; text-align: left; display: flex; align-items: center; gap: 11px; font-weight: 560; transition: .16s ease; }
+    .nav-btn svg { width: 17px; height: 17px; flex: none; }
+    .nav-btn:hover { background: #f5f7f2; color: var(--ink); }
+    .nav-btn.active { color: var(--green-dark); background: var(--mint); font-weight: 700; }
+    .sidebar-bottom { margin-top: auto; }
+    .tip { border-radius: 7px; padding: 14px; background: #f3f5ed; color: #596558; font-size: 12px; }
+    .tip-icon { color: #8fa74b; font-size: 17px; margin-bottom: 5px; }
+    .tip strong { color: #313c32; display: block; font-size: 12px; margin-bottom: 3px; }
+    .sidebar-foot { margin: 14px 10px 0; font-size: 10px; color: #a1a79f; }
+    main { min-width: 0; padding: 0 34px 48px; }
+    .topbar { height: 74px; display: flex; justify-content: flex-end; align-items: center; border-bottom: 1px solid var(--line); gap: 14px; }
+    .term-pill { display: flex; align-items: center; gap: 7px; color: #66766e; font-size: 12px; }
+    .term-pill svg { width: 15px; height: 15px; }
+    .lang-select { border: 1px solid var(--line); color: #47524a; background: #fff; border-radius: 5px; padding: 7px 27px 7px 10px; font-size: 12px; }
+    .main-inner { width: min(1080px,100%); margin: 0 auto; }
+    .page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding: 35px 0 25px; border-bottom: 1px solid var(--line); margin-bottom: 19px; }
+    .eyebrow { color: #a5604c; text-transform: uppercase; letter-spacing: .09em; font-size: 10px; font-weight: 760; margin-bottom: 7px; }
+    h1 { font-size: 27px; letter-spacing: 0; line-height: 1.2; margin: 0; font-weight: 710; }
+    .subhead { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+    .head-decoration { display: flex; align-items: center; gap: 9px; color: #69776f; font-size: 11px; }
+    .trend-stamp { width: 36px; height: 36px; display:grid; place-items:center; background: #f7e9e3; border-radius: 6px; color: #a96450; }
+    .trend-stamp svg { width: 19px; height: 19px; }
+    .view { display: none; }
+    .view.active { display: block; }
+    .panel { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .calculator-layout { display: grid; grid-template-columns: minmax(0,1.12fr) minmax(280px,.88fr); gap: 16px; }
+    .form-panel { padding: 21px 22px 23px; }
+    .panel-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
+    .panel-heading h2 { margin: 0; font-size: 15px; letter-spacing: -.2px; }
+    .panel-heading p { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
+    .step { font-size: 10px; font-weight: 730; color: #83907e; background: #f3f5ef; border-radius: 4px; padding: 5px 7px; white-space: nowrap; }
+    .field-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px 13px; }
+    .field { min-width: 0; }
+    .field label { display: flex; justify-content: space-between; gap: 8px; color: #535e55; font-size: 11px; font-weight: 650; margin-bottom: 6px; }
+    .field label small { color: #9ba39a; font-size: 10px; font-weight: 450; }
+    .input-wrap { display: flex; align-items: center; border: 1px solid #e4e8e0; border-radius: 5px; background: #fff; transition: border .15s, box-shadow .15s; }
+    .input-wrap:focus-within { border-color: #75a68e; box-shadow: 0 0 0 3px rgba(36,107,80,.09); }
+    .input-wrap input, .input-wrap select { border: 0; outline: 0; width: 100%; min-width: 0; padding: 9px 10px; color: #29332c; background: transparent; }
+    .input-wrap select { cursor: pointer; }
+    .suffix { padding: 0 10px 0 0; color: #9aa198; font-size: 11px; }
+    .helper { color: #9aa198; font-size: 10px; margin-top: 4px; }
+    .divider { height: 1px; background: var(--line); margin: 18px 0 15px; }
+    .inline-options { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #68736a; font-size: 11px; }
+    .check-line { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+    .check-line input { accent-color: var(--green); width: 14px; height: 14px; margin: 0; }
+    .hint-link { border: 0; background: none; color: var(--green); padding: 0; font-size: 11px; }
+    .result-panel { background: #e9f0ec; border: 1px solid #dbe6df; border-radius: var(--radius); padding: 21px 22px 19px; display:flex; flex-direction:column; min-height: 100%; }
+    .result-kicker { color: #6a7c6b; font-size: 11px; font-weight: 650; }
+    .result-grade { font-size: 52px; line-height: 1.08; letter-spacing: -2px; color: var(--green-dark); font-weight: 760; margin: 12px 0 3px; }
+    .result-caption { color: #708174; font-size: 12px; }
+    .meter { height: 7px; width: 100%; background: #d8e4d9; border-radius: 8px; overflow: hidden; margin: 19px 0 8px; }
+    .meter span { display: block; height: 100%; width: 0; background: var(--green); border-radius: inherit; transition: width .3s ease; }
+    .meter-labels { display: flex; justify-content: space-between; color: #8a998b; font-size: 9px; }
+    .result-note { margin: 20px 0 0; padding: 11px 12px; border-left: 2px solid #a4bd78; background: rgba(255,255,255,.56); color: #5f6e61; font-size: 11px; }
+    .result-footer { display: flex; gap: 14px; margin-top: auto; padding-top: 21px; }
+    .mini-stat { flex:1; border-top: 1px solid #d8e5d8; padding-top: 10px; }
+    .mini-stat span { display:block; color:#849287; font-size:10px; }
+    .mini-stat strong { color:#394b3c; font-size:15px; display:block; margin-top:3px; }
+    .under-grid { margin-top: 17px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .info-panel { padding: 17px 19px; display: flex; align-items: center; gap: 13px; box-shadow: none; }
+    .info-icon { width: 34px; height: 34px; flex:none; display:grid; place-items:center; border-radius:6px; }
+    .info-icon svg { width:17px;height:17px; }
+    .info-icon.coral { background:#faeee8;color:#c3765f; }
+    .info-icon.blue { background:#eaf3f5;color:#518595; }
+    .info-copy strong { display:block; font-size:11px; margin-bottom:2px; }
+    .info-copy span { display:block;color:#849087;font-size:10px; }
+    .gpa-toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:17px 19px; border-bottom:1px solid var(--line); }
+    .gpa-toolbar h2 { margin:0;font-size:14px; }
+    .toolbar-actions { display:flex; align-items:center; gap:8px; }
+    .select-compact { border:1px solid var(--line); border-radius:5px; background:#fff; padding:7px 28px 7px 9px; color:#4f5a51; font-size:11px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; border:1px solid #dfe5dc; background:white; color:#47554a; padding:7px 10px; border-radius:5px; font-size:11px; font-weight:650; }
+    .btn svg { width:14px;height:14px; }
+    .btn:hover { background:#f8faf6; }
+    .btn.primary { background:var(--green); color:white; border-color:var(--green); }
+    .btn.primary:hover { background:var(--green-dark); }
+    .table-scroll { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; min-width:680px; }
+    th { text-align:left; color:#89938a; text-transform:uppercase; letter-spacing:.08em; font-size:9px; font-weight:700; padding:11px 15px; background:#fbfcfa; }
+    td { border-top:1px solid #eff1ed; padding:9px 15px; }
+    td input, td select { border:1px solid transparent; background:transparent; border-radius:4px; outline:0; padding:6px 7px; color:#344037; width:100%; font-size:11px; }
+    td input:hover, td select:hover, td input:focus, td select:focus { border-color:#e3e9e1; background:#fff; }
+    td input[type=number] { max-width:88px; }
+    .course-name { min-width:145px; font-weight:600; }
+    .grade-letter { color:var(--green); font-weight:750; }
+    .remove-btn { border:0;background:none;color:#b2bab1;font-size:17px;line-height:1;padding:3px 6px; }
+    .remove-btn:hover { color:#c86d60; }
+    .table-bottom { display:flex; justify-content:space-between; align-items:center; padding:12px 18px; border-top:1px solid var(--line); }
+    .add-course { border:0;background:none;color:var(--green);font-size:11px;font-weight:700;padding:5px 0; }
+    .add-course:hover { color:var(--green-dark); }
+    .course-count { color:#939b92;font-size:10px; }
+    .gpa-summary { display:grid; grid-template-columns:1.05fr 1fr 1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin-top:15px; }
+    .gpa-stat { background:#fff;padding:15px 17px; }
+    .gpa-stat span { color:#879188;font-size:10px;display:block; }
+    .gpa-stat strong { font-size:21px;letter-spacing:-.5px;display:block;margin-top:4px;color:#354239; }
+    .gpa-stat.primary-stat { background:#edf4ec; }
+    .gpa-stat.primary-stat strong { color:var(--green-dark);font-size:27px; }
+    .gpa-footnote { margin:12px 2px 0; color:#969e95; font-size:10px; }
+    .progress-panel { padding:20px; margin-top:16px; }
+    .feature-panel { padding:20px; margin-top:16px; }
+    .feature-panel > h2 { margin:0; font-size:15px; }
+    .feature-panel > p { margin:4px 0 15px; color:var(--muted); font-size:11px; }
+    .category-row { position:relative; display:grid; grid-template-columns:minmax(110px,1fr) 90px minmax(180px,2fr) 82px 32px; gap:8px; align-items:end; padding:10px 0; border-top:1px solid var(--line); }
+    .compact-field label { display:block; color:#68736a; font-size:10px; font-weight:650; margin:0 0 5px; }
+    .compact-field input { width:100%; min-width:0; border:1px solid #e4e8e0; border-radius:5px; padding:8px; color:var(--ink); }
+    .category-result { margin-top:14px; padding:13px 15px; background:#e9f0ec; border:1px solid #dbe6df; border-radius:6px; display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+    .category-result strong { color:var(--green-dark); font-size:24px; }
+    .category-result span { color:var(--muted); font-size:11px; }
+    .remove-category { justify-self:center; }
+    .planner-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+    .planner-result { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:14px; padding:13px 15px; background:#e9f0ec; border:1px solid #dbe6df; border-radius:6px; }
+    .planner-result strong { color:var(--green-dark); font-size:24px; }
+    .rule-details { margin-top:15px; border-top:1px solid var(--line); padding-top:12px; }
+    .rule-details summary { cursor:pointer; color:var(--green-dark); font-size:12px; font-weight:700; }
+    .rule-details > p { color:var(--muted); font-size:10px; margin:6px 0 12px; }
+    .rules-table { min-width:0; }
+    .rules-table th,.rules-table td { padding:7px 9px; }
+    .rules-table td input { max-width:110px; border:1px solid #e4e8e0; background:#fff; padding:7px; }
+    .rule-extra { display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding:10px 9px; color:#68736a; font-size:11px; }
+    .rule-extra label { display:flex; align-items:center; gap:7px; }
+    .rule-extra input[type=number] { width:74px; border:1px solid #e4e8e0; border-radius:4px; padding:6px; }
+    .progress-row { display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:17px;align-items:end; height:118px; }
+    .bar-item { display:flex; flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:6px; }
+    .bar-value { color:#68766a;font-size:10px;font-weight:650; }
+    .bar { width:min(34px,65%);height:60%;min-height:6px;background:#c8ddcd;border-radius:4px 4px 2px 2px; }
+    .bar:nth-child(2) { background:var(--lime); }
+    .bar-label { color:#8b948c;font-size:9px; }
+    .hidden { display:none!important; }
+    @media (max-width:900px) {
+      .shell { grid-template-columns: 68px minmax(0,1fr); }
+      .sidebar { padding:20px 9px; align-items:center; }
+      .brand { padding:3px 0 27px; }
+      .brand-name,.side-label,.nav-text,.sidebar-bottom,.sidebar-foot { display:none; }
+      .nav { width:100%; }
+      .nav-btn { justify-content:center;padding:11px 5px; }
+      .nav-btn svg { width:19px;height:19px; }
+      main { padding:0 23px 40px; }
+    }
+    @media (max-width:680px) {
+      .shell { display:block; padding-bottom:64px; }
+      .sidebar { position:fixed;z-index:5;bottom:0;left:0;right:0;height:60px;padding:5px 12px;background:#fff;border-right:0;border-top:1px solid var(--line); }
+      .brand,.sidebar-bottom,.sidebar-foot,.side-label { display:none; }
+      .nav { display:flex;justify-content:space-around;gap:4px;max-width:430px;margin:auto; }
+      .nav-btn { width:auto;min-width:56px;justify-content:center;border-radius:5px;padding:10px 15px; }
+      main { padding:0 15px 25px; }
+      .topbar { height:59px; }
+      .page-head { padding:24px 0 18px;align-items:center; }
+      h1 { font-size:22px; }
+      .head-decoration .deco-text { display:none; }
+      .calculator-layout { grid-template-columns:1fr; }
+      .result-panel { min-height:245px; }
+      .under-grid { grid-template-columns:1fr;gap:9px; }
+      .form-panel,.result-panel { padding:17px; }
+      .gpa-toolbar { align-items:flex-start;flex-direction:column; }
+      .toolbar-actions { width:100%;flex-wrap:wrap; }
+      .gpa-summary { grid-template-columns:1fr 1fr; }
+      .progress-panel { padding:16px; }
+      .planner-grid { grid-template-columns:1fr 1fr; }
+      .category-row { grid-template-columns:1fr 72px 1.5fr 66px 24px; gap:5px; }
+      .compact-field input { padding:7px 5px; font-size:10px; }
+    }
+    @media (max-width:390px) {
+      .field-grid { gap:11px 8px; }
+      .input-wrap input,.input-wrap select { padding:9px 7px; }
+      .page-head { gap:8px; }
+      .term-pill { display:none; }
+      .result-grade { font-size:46px; }
+      .category-row { grid-template-columns:minmax(0,1fr) 68px 28px; align-items:end; padding-right:0; }
+      .category-row .scores-field { grid-column:1 / 4; }
+      .category-row .remove-category { grid-column:3; grid-row:1; justify-self:center; }
+      .planner-grid { grid-template-columns:1fr 1fr; }
+    }
   </style>
 </head>
 <body>
   <div class="shell">
     <aside class="sidebar">
-      <a class="brand" href="#" aria-label="Gradegarden home"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V10"/><path d="M12 14c-5 0-8-3-8-8 5 0 8 3 8 8Z"/><path d="M12 11c0-4 2.5-7 7-8 0 5-2.5 8-7 8Z"/></svg></span><span class="brand-name">grade<span>garden</span></span></a>
+      <a class="brand" href="#" aria-label="Gradegarden home">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.75h8l4 4V20a.75.75 0 0 1-.75.75h-11.5A.75.75 0 0 1 5 20V4.75A1 1 0 0 1 6 3.75Z"/><path d="M14 4v4h4M8 12h7M8 15.5h4"/><path d="m13.5 17 1.5 1.5 3-3"/></svg></span>
+        <span class="brand-name">grade<span>garden</span></span>
+      </a>
       <div class="side-label" data-i18n="workspace">Workspace</div>
       <nav class="nav" aria-label="Main navigation">
-        <button class="nav-btn active" data-view="target" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg><span class="nav-text" data-i18n="targetNav">Final target</span></button>
-        <button class="nav-btn" data-view="current"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V5M4 19h17m-14-4 4-4 3 2 6-7"/></svg><span class="nav-text" data-i18n="currentNav">Course grade</span></button>
-        <button class="nav-btn" data-view="gpa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V5M4 19h17M7 15h3v-4h4V7h4"/></svg><span class="nav-text" data-i18n="gpaNav">GPA planner</span></button>
+        <button class="nav-btn active" data-view="target" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg><span class="nav-text" data-i18n="targetNav">Final target</span></button>
+        <button class="nav-btn" data-view="current"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h17"/><path d="m7 15 4-4 3 2 6-7"/></svg><span class="nav-text" data-i18n="currentNav">Course grade</span></button>
+        <button class="nav-btn" data-view="categories"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/><path d="m17 16 2 2 3-4"/></svg><span class="nav-text" data-i18n="categoriesNav">Categories</span></button>
+        <button class="nav-btn" data-view="gpa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h17"/><path d="M7 15h3v-4h4V7h4"/></svg><span class="nav-text" data-i18n="gpaNav">GPA planner</span></button>
       </nav>
-      <div class="sidebar-bottom"><div class="tip"><div class="tip-icon">✳</div><strong data-i18n="tipTitle">A little perspective</strong><span data-i18n="tipText">One exam is a moment, not the whole story. Keep going.</span></div><div class="sidebar-foot">GRADEGARDEN · 2026</div></div>
+      <div class="sidebar-bottom">
+        <div class="tip"><div class="tip-icon">✳</div><strong data-i18n="tipTitle">A little perspective</strong><span data-i18n="tipText">One exam is a moment, not the whole story. Keep going.</span></div>
+        <div class="sidebar-foot">GRADEGARDEN · <span id="footerYear"></span></div>
+      </div>
     </aside>
     <main>
-      <div class="topbar"><div class="term-pill"><span data-i18n="term">Fall semester · 2025</span></div><select class="lang-select" id="language" aria-label="Language"><option value="en">English</option><option value="zh">简体中文</option></select></div>
+      <div class="topbar">
+        <div class="term-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span id="termLabel"></span></div>
+        <select class="lang-select" id="language" aria-label="Language">
+          <option value="en">English</option>
+          <option value="zh">简体中文</option>
+        </select>
+      </div>
       <div class="main-inner">
-        <header class="page-head"><div><div class="eyebrow" data-i18n="eyebrow">A calmer way to keep score</div><h1 data-i18n="pageTitle">Your grades, growing clearer.</h1><p class="subhead" data-i18n="pageSubtitle">Make a plan for the next exam, or see the bigger picture.</p></div><div class="head-decoration"><span class="leaf-stamp">✦</span><span data-i18n="smallSteps">Small steps add up</span></div></header>
-
+        <header class="page-head">
+          <div><div class="eyebrow" data-i18n="eyebrow">A calmer way to keep score</div><h1 data-i18n="pageTitle">Your grades, growing clearer.</h1><p class="subhead" data-i18n="pageSubtitle">Make a plan for the next exam, or see the bigger picture.</p></div>
+          <div class="head-decoration"><span class="trend-stamp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18.5h16M6 15l4-4 3 2 5-6"/><path d="M15 7h3v3"/></svg></span><span class="deco-text" data-i18n="smallSteps">Small steps add up</span></div>
+        </header>
         <section id="view-target" class="view active">
           <div class="calculator-layout">
             <div class="panel form-panel">
@@ -47,56 +257,380 @@
                 <div class="field"><label for="possiblePoints" data-i18n="possiblePoints">Points possible so far</label><div class="input-wrap"><input id="possiblePoints" type="number" min="1" value="500"><span class="suffix" data-i18n="pts">pts</span></div></div>
                 <div class="field"><label for="finalPoints" data-i18n="finalPoints">Final exam points possible</label><div class="input-wrap"><input id="finalPoints" type="number" min="1" value="100"><span class="suffix" data-i18n="pts">pts</span></div></div>
               </div>
-              <div class="divider"></div><div class="inline-options"><label class="check-line"><input type="checkbox" id="roundGrade" checked><span data-i18n="roundGrade">Round up to the next whole percent</span></label><button class="hint-link" id="resetTarget" type="button" data-i18n="reset">Reset values</button></div>
+              <div class="divider"></div>
+              <div class="inline-options"><label class="check-line"><input type="checkbox" id="roundGrade" checked><span data-i18n="roundGrade">Round up to the next whole percent</span></label><button class="hint-link" id="resetTarget" type="button" data-i18n="reset">Reset values</button></div>
             </div>
-            <div class="result-panel"><div class="result-kicker" data-i18n="resultKicker">Your target score</div><div class="result-grade" id="targetResult">108%</div><div class="result-caption" id="targetCaption"></div><div class="meter"><span id="targetMeter"></span></div><div class="meter-labels"><span>0%</span><span>100%</span></div><p class="result-note" id="targetNote"></p><div class="result-footer"><div class="mini-stat"><span data-i18n="goalGrade">Goal grade</span><strong id="goalDisplay">90%</strong></div><div class="mini-stat"><span data-i18n="currentLabel">Current standing</span><strong id="currentDisplay">84%</strong></div></div></div>
+            <div class="result-panel">
+              <div class="result-kicker" data-i18n="resultKicker">Your target score</div>
+              <div class="result-grade" id="targetResult">108%</div>
+              <div class="result-caption" id="targetCaption">That’s the score to reach your goal.</div>
+              <div class="meter"><span id="targetMeter"></span></div>
+              <div class="meter-labels"><span>0%</span><span>100%</span></div>
+              <p class="result-note" id="targetNote">You’ve got a plan. Focus on the points still in reach.</p>
+              <div class="result-footer">
+                <div class="mini-stat"><span data-i18n="goalGrade">Goal grade</span><strong id="goalDisplay">90%</strong></div>
+                <div class="mini-stat"><span data-i18n="currentLabel">Current standing</span><strong id="currentDisplay">84%</strong></div>
+              </div>
+            </div>
           </div>
-          <div class="under-grid"><div class="panel info-panel"><span class="info-icon coral">!</span><div class="info-copy"><strong data-i18n="over100Title">Above 100%?</strong><span data-i18n="over100Text">Your goal may need extra credit or a second look at the weights.</span></div></div><div class="panel info-panel"><span class="info-icon blue">i</span><div class="info-copy"><strong data-i18n="formulaTitle">The simple formula</strong><span data-i18n="formulaText">Needed score = (goal − current × (1 − final weight)) ÷ final weight</span></div></div></div>
+          <div class="under-grid">
+            <div class="panel info-panel"><span class="info-icon coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 20h18L12 3Z"/><path d="M12 9v4m0 3h.01"/></svg></span><div class="info-copy"><strong data-i18n="over100Title">Above 100%?</strong><span data-i18n="over100Text">Your goal may need extra credit or a second look at the weights.</span></div></div>
+            <div class="panel info-panel"><span class="info-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg></span><div class="info-copy"><strong data-i18n="formulaTitle">The simple formula</strong><span data-i18n="formulaText">Needed score = (goal − current × (1 − final weight)) ÷ final weight</span></div></div>
+          </div>
         </section>
-
         <section id="view-current" class="view">
           <div class="calculator-layout">
-            <div class="panel form-panel"><div class="panel-heading"><div><h2 data-i18n="currentTitle">Calculate your course grade</h2><p data-i18n="currentDescription">See where you’ll land after the final.</p></div><span class="step" data-i18n="stepTwo">02 / REVIEW</span></div><div class="field-grid"><div class="field"><label for="beforeFinal" data-i18n="gradeBefore">Grade before the final</label><div class="input-wrap"><input id="beforeFinal" type="number" min="0" max="100" value="84"><span class="suffix">%</span></div></div><div class="field"><label for="finalScore" data-i18n="finalScore">Final exam score</label><div class="input-wrap"><input id="finalScore" type="number" min="0" max="100" value="92"><span class="suffix">%</span></div></div><div class="field"><label for="courseWeight" data-i18n="finalWeight">Final exam weight</label><div class="input-wrap"><input id="courseWeight" type="number" min="0" max="100" value="25"><span class="suffix">%</span></div></div><div class="field"><label for="letterScale" data-i18n="letterScale">Letter grade scale</label><div class="input-wrap"><select id="letterScale"><option value="standard" data-i18n="standardScale">Standard (A ≥ 90)</option><option value="plusminus" data-i18n="plusScale">Plus / minus (A− ≥ 90)</option></select></div></div></div><div class="divider"></div><div class="inline-options"><span data-i18n="courseGradeNote">Weighted average of your current grade and final exam.</span><button class="hint-link" id="resetCurrent" type="button" data-i18n="reset">Reset values</button></div></div>
-            <div class="result-panel"><div class="result-kicker" data-i18n="courseResult">Your course grade</div><div class="result-grade" id="courseResult">86%</div><div class="result-caption" id="courseLetter"></div><div class="meter"><span id="courseMeter"></span></div><div class="meter-labels"><span>0%</span><span>100%</span></div><p class="result-note" id="courseNote"></p><div class="result-footer"><div class="mini-stat"><span data-i18n="beforeFinalStat">Before final</span><strong id="beforeDisplay">84%</strong></div><div class="mini-stat"><span data-i18n="examStat">Final exam</span><strong id="finalDisplay">92%</strong></div></div></div>
+            <div class="panel form-panel">
+              <div class="panel-heading"><div><h2 data-i18n="currentTitle">Calculate your course grade</h2><p data-i18n="currentDescription">See where you’ll land after the final.</p></div><span class="step" data-i18n="stepTwo">02 / REVIEW</span></div>
+              <div class="field-grid">
+                <div class="field"><label for="beforeFinal" data-i18n="gradeBefore">Grade before the final</label><div class="input-wrap"><input id="beforeFinal" type="number" min="0" max="100" value="84"><span class="suffix">%</span></div></div>
+                <div class="field"><label for="finalScore" data-i18n="finalScore">Final exam score</label><div class="input-wrap"><input id="finalScore" type="number" min="0" max="100" value="92"><span class="suffix">%</span></div></div>
+                <div class="field"><label for="courseWeight" data-i18n="finalWeight">Final exam weight</label><div class="input-wrap"><input id="courseWeight" type="number" min="0" max="100" value="25"><span class="suffix">%</span></div></div>
+                <div class="field"><label for="letterScale" data-i18n="letterScale">Letter grade scale</label><div class="input-wrap"><select id="letterScale"><option value="standard" data-i18n="standardScale">Standard (A ≥ 90)</option><option value="plusminus" data-i18n="plusScale">Plus / minus (A− ≥ 90)</option><option value="custom" data-i18n="customScale">Custom school rules</option></select></div></div>
+              </div>
+              <div class="divider"></div><div class="inline-options"><span data-i18n="courseGradeNote">Weighted average of your current grade and final exam.</span><button class="hint-link" id="resetCurrent" type="button" data-i18n="reset">Reset values</button></div>
+            </div>
+            <div class="result-panel">
+              <div class="result-kicker" data-i18n="courseResult">Your course grade</div>
+              <div class="result-grade" id="courseResult">86%</div>
+              <div class="result-caption" id="courseLetter">B · Nice work</div>
+              <div class="meter"><span id="courseMeter"></span></div>
+              <div class="meter-labels"><span>0%</span><span>100%</span></div>
+              <p class="result-note" id="courseNote">Your final counts for 25% of the course grade.</p>
+              <div class="result-footer"><div class="mini-stat"><span data-i18n="beforeFinalStat">Before final</span><strong id="beforeDisplay">84%</strong></div><div class="mini-stat"><span data-i18n="examStat">Final exam</span><strong id="finalDisplay">92%</strong></div></div>
+            </div>
+          </div>
+          <div class="under-grid">
+            <div class="panel info-panel"><span class="info-icon coral">✳</span><div class="info-copy"><strong data-i18n="moreExamsTitle">More than one final?</strong><span data-i18n="moreExamsText">Use the target planner with each exam weighted as part of your remaining grade.</span></div></div>
+            <div class="panel info-panel"><span class="info-icon blue">A−</span><div class="info-copy"><strong data-i18n="scaleTitle">Every class has its own scale</strong><span data-i18n="scaleText">Check your syllabus for plus/minus cutoffs and rounding rules.</span></div></div>
           </div>
         </section>
-
+        <section id="view-categories" class="view">
+          <div class="panel feature-panel">
+            <h2 data-i18n="categoryTitle">Calculate by assignment category</h2>
+            <p data-i18n="categoryDescription">Add each category’s weight and scores. The lowest scores you choose will be excluded before the category average is calculated.</p>
+            <div id="categoryRows"></div>
+            <div class="table-bottom"><button class="add-course" id="addCategory" type="button">＋ <span data-i18n="addCategory">Add category</span></button><span class="course-count" id="categoryWeightTotal"></span></div>
+            <div class="category-result"><div><span data-i18n="categoryCourseGrade">Estimated course grade</span><div id="categoryStatus" class="helper"></div></div><strong id="categoryGrade">—</strong></div>
+          </div>
+        </section>
         <section id="view-gpa" class="view">
-          <div class="panel"><div class="gpa-toolbar"><h2 data-i18n="gpaTitle">Your course list</h2><div class="toolbar-actions"><label class="check-line"><input type="checkbox" id="includePlus" checked><span data-i18n="plusMinus">Plus / minus grades</span></label><select class="select-compact" id="gpaScale"><option value="four" data-i18n="scaleFour">US 4.0 · unweighted</option><option value="plus" data-i18n="scalePlus">US 4.3 · plus/minus</option><option value="five" data-i18n="scaleFive">5.0 · honors / AP</option><option value="uc" data-i18n="scaleUC">UC-style · capped weighted</option></select><button class="btn" id="clearCourses" type="button"><span data-i18n="clear">Clear</span></button></div></div><div class="table-scroll"><table><thead><tr><th data-i18n="subject">Subject</th><th data-i18n="letterGrade">Letter grade</th><th data-i18n="credits">Credits</th><th data-i18n="courseType">Course type</th><th data-i18n="qualityPoints">Quality points</th><th></th></tr></thead><tbody id="courseRows"></tbody></table></div><div class="table-bottom"><button class="add-course" id="addCourse" type="button">＋ <span data-i18n="addCourse">Add a course</span></button><span class="course-count" id="courseCount"></span></div></div>
-          <div class="gpa-summary"><div class="gpa-stat primary-stat"><span data-i18n="semesterGpa">Estimated GPA</span><strong id="gpaResult">3.67</strong></div><div class="gpa-stat"><span data-i18n="totalCredits">Total credits</span><strong id="creditTotal">15</strong></div><div class="gpa-stat"><span data-i18n="gradePoints">Quality points</span><strong id="qualityTotal">55.0</strong></div><div class="gpa-stat"><span data-i18n="letterStanding">Letter standing</span><strong id="gpaLetter">A−</strong></div></div><p class="gpa-footnote" data-i18n="gpaDisclaimer">GPA scales vary by school. These are planning estimates, not an official transcript calculation.</p>
+          <div class="panel">
+            <div class="gpa-toolbar"><h2 data-i18n="gpaTitle">Your course list</h2><div class="toolbar-actions"><label class="check-line"><input type="checkbox" id="includePlus" checked><span data-i18n="plusMinus">Plus / minus grades</span></label><select class="select-compact" id="gpaScale"><option value="four" data-i18n="scaleFour">US 4.0 · unweighted</option><option value="plus" data-i18n="scalePlus">US 4.3 · plus/minus</option><option value="five" data-i18n="scaleFive">5.0 · honors / AP</option><option value="uc" data-i18n="scaleUC">UC-style · capped weighted</option><option value="custom" data-i18n="scaleCustom">Custom school scale</option></select><button class="btn" id="clearCourses" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M10 11v6m4-6v6M5 7l1 13h12l1-13M9 7V4h6v3"/></svg><span data-i18n="clear">Clear</span></button></div></div>
+            <div class="table-scroll"><table><thead><tr><th data-i18n="subject">Subject</th><th data-i18n="letterGrade">Letter grade</th><th data-i18n="credits">Credits</th><th data-i18n="courseType">Course type</th><th data-i18n="qualityPoints">Quality points</th><th></th></tr></thead><tbody id="courseRows"></tbody></table></div>
+            <div class="table-bottom"><button class="add-course" id="addCourse" type="button">＋ <span data-i18n="addCourse">Add a course</span></button><span class="course-count" id="courseCount"></span></div>
+          </div>
+          <div class="gpa-summary">
+            <div class="gpa-stat primary-stat"><span data-i18n="semesterGpa">Estimated GPA</span><strong id="gpaResult">3.67</strong></div>
+            <div class="gpa-stat"><span data-i18n="totalCredits">Total credits</span><strong id="creditTotal">15</strong></div>
+            <div class="gpa-stat"><span data-i18n="gradePoints">Quality points</span><strong id="qualityTotal">55.0</strong></div>
+            <div class="gpa-stat"><span data-i18n="letterStanding">Letter standing</span><strong id="gpaLetter">A−</strong></div>
+          </div>
+          <p class="gpa-footnote" data-i18n="gpaDisclaimer">GPA scales vary by school. These are planning estimates, not an official transcript calculation. UC-style weighting is an illustrative approximation.</p>
           <div class="panel progress-panel"><div class="panel-heading"><div><h2 data-i18n="gradeSnapshot">Grade snapshot</h2><p data-i18n="snapshotSub">A quick look at your course mix.</p></div><span class="step" data-i18n="thisTerm">THIS TERM</span></div><div class="progress-row" id="gradeBars"></div></div>
+          <div class="panel feature-panel">
+            <h2 data-i18n="cumulativeTitle">Cumulative GPA goal</h2>
+            <p data-i18n="cumulativeDescription">Find the term GPA needed to reach your target cumulative GPA.</p>
+            <div class="planner-grid">
+              <div class="field compact-field"><label for="currentCumGpa" data-i18n="currentCumGpa">Current cumulative GPA</label><input id="currentCumGpa" type="number" min="0" max="5" step=".01" value="3.2"></div>
+              <div class="field compact-field"><label for="completedCredits" data-i18n="completedCredits">Credits completed</label><input id="completedCredits" type="number" min="0" step=".5" value="30"></div>
+              <div class="field compact-field"><label for="targetCumGpa" data-i18n="targetCumGpa">Target cumulative GPA</label><input id="targetCumGpa" type="number" min="0" max="5" step=".01" value="3.5"></div>
+              <div class="field compact-field"><label for="plannedCredits" data-i18n="plannedCredits">Upcoming credits</label><input id="plannedCredits" type="number" min="0" step=".5" value="15"></div>
+            </div>
+            <div class="planner-result"><span id="cumulativeStatus"></span><strong id="requiredTermGpa">—</strong></div>
+          </div>
+          <div class="panel feature-panel">
+            <h2 data-i18n="customRulesTitle">School grading rules</h2>
+            <p data-i18n="customRulesDescription">Adjust percentage cutoffs, grade points, and honors weighting. Changes apply to course grades and GPA estimates.</p>
+            <details class="rule-details">
+              <summary data-i18n="editRules">Edit grade cutoffs and GPA points</summary>
+              <p data-i18n="rulesDisclaimer">Schools use different policies. Enter the rules from your school handbook.</p>
+              <div class="table-scroll"><table class="rules-table"><thead><tr><th data-i18n="letterGrade">Letter grade</th><th data-i18n="minimumPercent">Minimum percent</th><th data-i18n="gradePoints">GPA points</th></tr></thead><tbody id="ruleRows"></tbody></table></div>
+              <div class="rule-extra">
+                <label><span data-i18n="honorsBonus">Honors / AP bonus</span><input id="honorsBonus" type="number" min="0" max="2" step=".1" value="1"></label>
+                <label><span data-i18n="gpaCap">GPA cap</span><input id="gpaCap" type="number" min="1" max="6" step=".1" value="4"></label>
+                <button class="btn" id="resetRules" type="button" data-i18n="resetRules">Restore defaults</button>
+              </div>
+            </details>
+          </div>
         </section>
       </div>
     </main>
   </div>
   <script>
-    const copy={
-      en:{workspace:"Workspace",targetNav:"Final target",currentNav:"Course grade",gpaNav:"GPA planner",tipTitle:"A little perspective",tipText:"One exam is a moment, not the whole story. Keep going.",term:"Fall semester · 2025",eyebrow:"A calmer way to keep score",pageTitle:"Your grades, growing clearer.",pageSubtitle:"Make a plan for the next exam, or see the bigger picture.",smallSteps:"Small steps add up",targetTitle:"What do you need on the final?",targetDescription:"Enter your current standing and the grade you’re aiming for.",stepOne:"01 / PLAN",currentGrade:"Current grade",targetGrade:"Desired course grade",finalWeight:"Final exam weight",gradingMode:"Grade calculation",weighted:"Weighted average",points:"Total points",earnedPoints:"Points earned so far",possiblePoints:"Points possible so far",finalPoints:"Final exam points possible",pts:"pts",roundGrade:"Round up to the next whole percent",reset:"Reset values",resultKicker:"Your target score",goalGrade:"Goal grade",currentLabel:"Current standing",over100Title:"Above 100%?",over100Text:"Your goal may need extra credit or a second look at the weights.",formulaTitle:"The simple formula",formulaText:"Needed score = (goal − current × (1 − final weight)) ÷ final weight",needScore:"That’s the score to reach your goal.",alreadyThere:"You’ve already reached your goal before the final.",impossible:"This goal is out of reach with the remaining points.",checkValues:"Check your grades and exam weight.",needPct:"of the final exam",planNote:"Focus on the points still in reach.",currentTitle:"Calculate your course grade",currentDescription:"See where you’ll land after the final.",stepTwo:"02 / REVIEW",gradeBefore:"Grade before the final",finalScore:"Final exam score",letterScale:"Letter grade scale",standardScale:"Standard (A ≥ 90)",plusScale:"Plus / minus (A− ≥ 90)",courseGradeNote:"Weighted average of your current grade and final exam.",courseResult:"Your course grade",beforeFinalStat:"Before final",examStat:"Final exam",greatWork:"Nice work",courseCounted:"Your final counts for {weight}% of the course grade.",gpaTitle:"Your course list",plusMinus:"Plus / minus grades",scaleFour:"US 4.0 · unweighted",scalePlus:"US 4.3 · plus/minus",scaleFive:"5.0 · honors / AP",scaleUC:"UC-style · capped weighted",clear:"Clear",subject:"Subject",letterGrade:"Letter grade",credits:"Credits",courseType:"Course type",qualityPoints:"Quality points",addCourse:"Add a course",semesterGpa:"Estimated GPA",totalCredits:"Total credits",gradePoints:"Quality points",letterStanding:"Letter standing",gpaDisclaimer:"GPA scales vary by school. These are planning estimates, not an official transcript calculation. UC-style weighting is an illustrative approximation.",gradeSnapshot:"Grade snapshot",snapshotSub:"A quick look at your course mix.",thisTerm:"THIS TERM",regular:"Regular",honors:"Honors",ap:"AP / IB",courseDefault:"New course",courses:"courses",course:"course",clearConfirm:"Remove all courses?"},
-      zh:{workspace:"工作台",targetNav:"期末目标",currentNav:"课程总评",gpaNav:"GPA 规划",tipTitle:"给自己一点空间",tipText:"一次考试只是一个瞬间，不是全部。继续向前。",term:"2025 秋季学期",eyebrow:"让成绩规划更从容",pageTitle:"看清成绩，也看见进步。",pageSubtitle:"为下一场考试做好计划，或看看更完整的成绩图景。",smallSteps:"每一步都算数",targetTitle:"期末要考多少分？",targetDescription:"输入目前成绩和你希望达到的课程总评。",stepOne:"01 / 规划",currentGrade:"当前成绩",targetGrade:"目标课程总评",finalWeight:"期末考试权重",gradingMode:"成绩计算方式",weighted:"加权平均",points:"总分制",earnedPoints:"目前已得分",possiblePoints:"目前总分",finalPoints:"期末考试总分",pts:"分",roundGrade:"向上取整至下一个整数百分比",reset:"重置数据",resultKicker:"期末目标分数",goalGrade:"目标总评",currentLabel:"当前成绩",over100Title:"目标超过 100%？",over100Text:"你可能需要额外加分，或重新确认课程权重。",formulaTitle:"计算公式",formulaText:"所需分数 =（目标 − 当前成绩 ×（1 − 期末权重））÷ 期末权重",needScore:"这是达到目标总评所需的期末分数。",alreadyThere:"即使期末之前，你也已经达到目标了。",impossible:"按剩余分数计算，这个目标暂时无法达到。",checkValues:"请检查成绩和期末考试权重。",needPct:"的期末考试",planNote:"专注于仍然可以争取的分数。",currentTitle:"计算课程总评",currentDescription:"看看期末结束后，你的课程成绩会是多少。",stepTwo:"02 / 回顾",gradeBefore:"期末前的课程成绩",finalScore:"期末考试成绩",letterScale:"字母成绩标准",standardScale:"标准制（A ≥ 90）",plusScale:"加减等级制（A− ≥ 90）",courseGradeNote:"根据当前成绩与期末成绩进行加权平均。",courseResult:"课程总评",beforeFinalStat:"期末前",examStat:"期末考试",greatWork:"继续保持",courseCounted:"期末考试占课程总评的 {weight}%。",gpaTitle:"课程列表",plusMinus:"启用加减等级",scaleFour:"美国 4.0 制 · 不加权",scalePlus:"美国 4.3 制 · 加减等级",scaleFive:"5.0 制 · 荣誉 / AP",scaleUC:"UC 风格 · 加权封顶",clear:"清空",subject:"科目",letterGrade:"字母成绩",credits:"学分",courseType:"课程类型",qualityPoints:"绩点",addCourse:"添加课程",semesterGpa:"估算 GPA",totalCredits:"总学分",gradePoints:"总绩点",letterStanding:"对应等级",gpaDisclaimer:"GPA 规则因学校而异。此处仅供规划参考，并非官方成绩单换算；UC 风格加权为示意性估算。",gradeSnapshot:"成绩概览",snapshotSub:"快速查看当前课程分布。",thisTerm:"本学期",regular:"普通课程",honors:"荣誉课程",ap:"AP / IB",courseDefault:"新课程",courses:"门课程",course:"门课程",clearConfirm:"要移除所有课程吗？"}
+    const copy = {
+      en: {
+        workspace:"Workspace",targetNav:"Final target",currentNav:"Course grade",categoriesNav:"Categories",gpaNav:"GPA planner",tipTitle:"A note on estimates",tipText:"Use these results for planning. Your syllabus sets the official rules.",
+        eyebrow:"GRADE PLANNER",pageTitle:"Plan your next grade.",pageSubtitle:"Set a final exam target, calculate a course grade, or estimate your GPA.",smallSteps:"One step at a time",
+        targetTitle:"What do you need on the final?",targetDescription:"Enter your current standing and the grade you’re aiming for.",stepOne:"01 / PLAN",currentGrade:"Current grade",targetGrade:"Desired course grade",finalWeight:"Final exam weight",gradingMode:"Grade calculation",weighted:"Weighted average",points:"Total points",earnedPoints:"Points earned so far",possiblePoints:"Points possible so far",finalPoints:"Final exam points possible",dropLowest:"Drop lowest score",no:"No",yes:"Yes · 1 score",pts:"pts",roundGrade:"Round up to the next whole percent",reset:"Reset values",resultKicker:"Your target score",goalGrade:"Goal grade",currentLabel:"Current standing",over100Title:"Above 100%?",over100Text:"Your goal may need extra credit or a second look at the weights.",formulaTitle:"The simple formula",formulaText:"Needed score = (goal − current × (1 − final weight)) ÷ final weight",
+        needScore:"That’s the score to reach your goal.",alreadyThere:"You’ve already reached your goal before the final.",impossible:"This goal is out of reach with the remaining points.",checkValues:"Check your grades and exam weight.",needPct:"of the final exam",planNote:"You’ve got a plan. Focus on the points still in reach.",
+        currentTitle:"Calculate your course grade",currentDescription:"See where you’ll land after the final.",stepTwo:"02 / REVIEW",gradeBefore:"Grade before the final",finalScore:"Final exam score",letterScale:"Letter grade scale",standardScale:"Standard (A ≥ 90)",plusScale:"Plus / minus (A− ≥ 90)",courseGradeNote:"Weighted average of your current grade and final exam.",courseResult:"Your course grade",beforeFinalStat:"Before final",examStat:"Final exam",moreExamsTitle:"More than one final?",moreExamsText:"Use the target planner with each exam weighted as part of your remaining grade.",scaleTitle:"Every class has its own scale",scaleText:"Check your syllabus for plus/minus cutoffs and rounding rules.",greatWork:"Nice work",courseCounted:"Your final counts for {weight}% of the course grade.",
+        categoryTitle:"Calculate by assignment category",categoryDescription:"Add each category’s weight and scores. The lowest scores you choose will be excluded before the category average is calculated.",addCategory:"Add category",categoryDefault:"Homework",categoryName:"Category name",categoryWeight:"Weight %",categoryScores:"Scores % (comma separated)",dropLowestCount:"Drop lowest",categoryCourseGrade:"Estimated course grade",weights:"Category weights",weightsValid:"Weights total 100%.",weightsInvalid:"Category weights must total 100%.",scoresMissing:"Enter at least one score in a category with weight.",cumulativeTitle:"Cumulative GPA goal",cumulativeDescription:"Find the term GPA needed to reach your target cumulative GPA.",currentCumGpa:"Current cumulative GPA",completedCredits:"Credits completed",targetCumGpa:"Target cumulative GPA",plannedCredits:"Upcoming credits",requiredTermGpa:"Required term GPA",alreadyReached:"You already meet this cumulative GPA goal.",goalPossible:"Required GPA for upcoming credits",goalImpossible:"This goal requires a GPA above the selected scale.",needCredits:"Enter upcoming credits to calculate.",customRulesTitle:"School grading rules",customRulesDescription:"Adjust percentage cutoffs, grade points, and honors weighting. Changes apply to course grades and GPA estimates.",editRules:"Edit grade cutoffs and GPA points",rulesDisclaimer:"Schools use different policies. Enter the rules from your school handbook.",minimumPercent:"Minimum percent",honorsBonus:"Honors / AP bonus",gpaCap:"GPA cap",resetRules:"Restore defaults",customScale:"Custom school rules",
+        gpaTitle:"Your course list",plusMinus:"Plus / minus grades",scaleFour:"US 4.0 · unweighted",scalePlus:"US 4.3 · plus/minus",scaleFive:"5.0 · honors / AP",scaleUC:"UC-style · capped weighted",scaleCustom:"Custom school scale",clear:"Clear",subject:"Subject",letterGrade:"Letter grade",credits:"Credits",courseType:"Course type",qualityPoints:"Quality points",addCourse:"Add a course",semesterGpa:"Estimated GPA",totalCredits:"Total credits",gradePoints:"Quality points",letterStanding:"Letter standing",gpaDisclaimer:"GPA scales vary by school. These are planning estimates, not an official transcript calculation. UC-style weighting is an illustrative approximation.",gradeSnapshot:"Grade snapshot",snapshotSub:"A quick look at your course mix.",thisTerm:"THIS TERM",regular:"Regular",honors:"Honors",ap:"AP / IB",courseDefault:"New course",courses:"courses",course:"course",clearConfirm:"Remove all courses?",gradeA:"A",gradeAMinus:"A−",gradeBPlus:"B+",gradeB:"B",gradeBMinus:"B−",gradeCPlus:"C+",gradeC:"C",gradeD:"D",gradeF:"F"
+      },
+      zh: {
+        workspace:"工作台",targetNav:"期末目标",currentNav:"课程总评",categoriesNav:"作业分类",gpaNav:"GPA 规划",tipTitle:"关于估算结果",tipText:"计算结果仅供规划参考，请以课程大纲的正式规则为准。",
+        eyebrow:"成绩规划",pageTitle:"规划下一步成绩。",pageSubtitle:"设定期末目标分、计算课程总评，或估算 GPA。",smallSteps:"一步一步来",
+        targetTitle:"期末要考多少分？",targetDescription:"输入目前成绩和你希望达到的课程总评。",stepOne:"01 / 规划",currentGrade:"当前成绩",targetGrade:"目标课程总评",finalWeight:"期末考试权重",gradingMode:"成绩计算方式",weighted:"加权平均",points:"总分制",earnedPoints:"目前已得分",possiblePoints:"目前总分",finalPoints:"期末考试总分",dropLowest:"是否丢弃最低分",no:"否",yes:"是 · 丢弃 1 次",pts:"分",roundGrade:"向上取整至下一个整数百分比",reset:"重置数据",resultKicker:"期末目标分数",goalGrade:"目标总评",currentLabel:"当前成绩",over100Title:"目标超过 100%？",over100Text:"你可能需要额外加分，或重新确认课程权重。",formulaTitle:"计算公式",formulaText:"所需分数 =（目标 − 当前成绩 ×（1 − 期末权重））÷ 期末权重",
+        needScore:"这是达到目标总评所需的期末分数。",alreadyThere:"即使期末之前，你也已经达到目标了。",impossible:"按剩余分数计算，这个目标暂时无法达到。",checkValues:"请检查成绩和期末考试权重。",needPct:"的期末考试",planNote:"计划已经有了，专注于仍然可以争取的分数。",currentTitle:"计算课程总评",currentDescription:"看看期末结束后，你的课程成绩会是多少。",stepTwo:"02 / 回顾",gradeBefore:"期末前的课程成绩",finalScore:"期末考试成绩",letterScale:"字母成绩标准",standardScale:"标准制（A ≥ 90）",plusScale:"加减等级制（A− ≥ 90）",courseGradeNote:"根据当前成绩与期末成绩进行加权平均。",courseResult:"课程总评",beforeFinalStat:"期末前",examStat:"期末考试",moreExamsTitle:"有多次期末考试？",moreExamsText:"在期末目标页中，把各次考试作为剩余成绩权重的一部分计算。",scaleTitle:"不同课程的评分标准不同",scaleText:"请在课程大纲中确认加减等级分界和取整规则。",greatWork:"继续保持",courseCounted:"期末考试占课程总评的 {weight}%。",
+        categoryTitle:"按作业类别计算成绩",categoryDescription:"为每个类别填写权重和成绩；系统会先按设置丢弃最低分，再计算类别平均分。",addCategory:"添加类别",categoryDefault:"作业",categoryName:"类别名称",categoryWeight:"权重 %",categoryScores:"成绩 %（逗号分隔）",dropLowestCount:"丢弃最低分",categoryCourseGrade:"估算课程总评",weights:"类别权重",weightsValid:"权重总和为 100%。",weightsInvalid:"类别权重总和必须为 100%。",scoresMissing:"请至少为一个有权重的类别填写成绩。",cumulativeTitle:"累计 GPA 目标规划",cumulativeDescription:"计算达到目标累计 GPA 所需的下学期 GPA。",currentCumGpa:"当前累计 GPA",completedCredits:"已修学分",targetCumGpa:"目标累计 GPA",plannedCredits:"计划修读学分",requiredTermGpa:"下学期所需 GPA",alreadyReached:"你已经达到这个累计 GPA 目标。",goalPossible:"未来学期需要达到的 GPA",goalImpossible:"该目标要求的 GPA 超出当前量表上限。",needCredits:"请输入计划修读学分以进行计算。",customRulesTitle:"自定义学校评分规则",customRulesDescription:"调整百分制等级分界、绩点和荣誉课程加权；这些规则会用于课程等级和 GPA 估算。",editRules:"编辑等级分界与绩点",rulesDisclaimer:"不同学校规则不同，请参考学校手册填写。",minimumPercent:"最低百分比",honorsBonus:"荣誉 / AP 加分",gpaCap:"GPA 上限",resetRules:"恢复默认值",customScale:"自定义学校规则",
+        gpaTitle:"课程列表",plusMinus:"启用加减等级",scaleFour:"美国 4.0 制 · 不加权",scalePlus:"美国 4.3 制 · 加减等级",scaleFive:"5.0 制 · 荣誉 / AP",scaleUC:"UC 风格 · 加权封顶",scaleCustom:"自定义学校规则",clear:"清空",subject:"科目",letterGrade:"字母成绩",credits:"学分",courseType:"课程类型",qualityPoints:"绩点",addCourse:"添加课程",semesterGpa:"估算 GPA",totalCredits:"总学分",gradePoints:"总绩点",letterStanding:"对应等级",gpaDisclaimer:"GPA 规则因学校而异。此处仅供规划参考，并非官方成绩单换算；UC 风格加权为示意性估算。",gradeSnapshot:"成绩概览",snapshotSub:"快速查看当前课程分布。",thisTerm:"本学期",regular:"普通课程",honors:"荣誉课程",ap:"AP / IB",courseDefault:"新课程",courses:"门课程",course:"门课程",clearConfirm:"要移除所有课程吗？"
+      }
     };
-    let locale="en";
-    const t=k=>copy[locale][k]||copy.en[k]||k;
-    const byId=id=>document.getElementById(id);
-    function applyLanguage(){locale=byId("language").value;document.documentElement.lang=locale==="zh"?"zh-CN":"en";document.querySelectorAll("[data-i18n]").forEach(el=>{const key=el.dataset.i18n;if(copy[locale][key])el.textContent=copy[locale][key]});updateTarget();updateCurrent();renderCourses()}
-    byId("language").addEventListener("change",applyLanguage);
-    document.querySelectorAll(".nav-btn").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".nav-btn").forEach(item=>{item.classList.remove("active");item.removeAttribute("aria-current")});btn.classList.add("active");btn.setAttribute("aria-current","page");document.querySelectorAll(".view").forEach(view=>view.classList.remove("active"));byId("view-"+btn.dataset.view).classList.add("active")}));
-    const validNum=(id,min=0,max=Infinity)=>{const value=Number(byId(id).value);return Number.isFinite(value)?Math.min(max,Math.max(min,value)):min};
-    function updateTarget(){let needed;const goal=validNum("targetGrade",0,100);if(byId("gradingMode").value==="points"){const earned=validNum("earnedPoints"),possible=validNum("possiblePoints",1),final=validNum("finalPoints",1);needed=((goal/100)*(possible+final)-earned)/final*100}else{const weight=validNum("finalWeight",0,100)/100;needed=weight>0?(goal-validNum("currentGrade",0,100)*(1-weight))/weight:(goal<=validNum("currentGrade",0,100)?0:Infinity)}if(byId("roundGrade").checked&&Number.isFinite(needed))needed=Math.ceil(needed);const result=byId("targetResult");const bounded=Number.isFinite(needed)?Math.max(0,Math.min(100,needed)):0;result.textContent=Number.isFinite(needed)?`${Math.round(needed*10)/10}%`:"—";byId("targetMeter").style.width=`${bounded}%`;byId("goalDisplay").textContent=`${goal}%`;byId("currentDisplay").textContent=`${validNum("currentGrade",0,100)}%`;let caption,note;if(!Number.isFinite(needed)||needed>100){caption=needed>100?t("impossible"):t("checkValues");note=needed>100?t("planNote"):t("checkValues");result.style.color="#ba6b56"}else if(needed<=0){caption=t("alreadyThere");note=t("alreadyThere");result.style.color="var(--dark)"}else{caption=t("needScore");note=`${needed}% ${t("needPct")}`;result.style.color="var(--dark)"}byId("targetCaption").textContent=caption;byId("targetNote").textContent=note}
-    ["currentGrade","targetGrade","finalWeight","earnedPoints","possiblePoints","finalPoints","roundGrade","gradingMode"].forEach(id=>byId(id).addEventListener("input",updateTarget));
-    byId("gradingMode").addEventListener("change",()=>{byId("pointsFields").classList.toggle("hidden",byId("gradingMode").value!=="points");updateTarget()});
-    byId("resetTarget").addEventListener("click",()=>{Object.entries({currentGrade:84,targetGrade:90,finalWeight:25,earnedPoints:420,possiblePoints:500,finalPoints:100}).forEach(([id,value])=>byId(id).value=value);byId("roundGrade").checked=true;byId("gradingMode").value="weighted";byId("pointsFields").classList.add("hidden");updateTarget()});
+    let locale = "en";
+    const t = key => copy[locale][key] || copy.en[key] || key;
+    const byId = id => document.getElementById(id);
+    function updateAcademicTerm() {
+      const now = new Date();
+      const month = now.getMonth();
+      const season = month <= 4 ? ["Spring", "春季"] : month <= 6 ? ["Summer", "夏季"] : ["Fall", "秋季"];
+      byId("termLabel").textContent = locale === "zh"
+        ? `${now.getFullYear()} ${season[1]}学期`
+        : `${season[0]} semester · ${now.getFullYear()}`;
+      byId("footerYear").textContent = now.getFullYear();
+    }
+    function applyLanguage() {
+      locale = byId("language").value;
+      document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (copy[locale][key]) el.textContent = copy[locale][key];
+      });
+      updateAcademicTerm();
+      updateTarget(); updateCurrent(); renderCategories(); renderCourses();
+    }
+    byId("language").addEventListener("change", applyLanguage);
+    document.querySelectorAll(".nav-btn").forEach(btn => btn.addEventListener("click", () => {
+      document.querySelectorAll(".nav-btn").forEach(item => { item.classList.remove("active"); item.removeAttribute("aria-current"); });
+      btn.classList.add("active"); btn.setAttribute("aria-current","page");
+      document.querySelectorAll(".view").forEach(view => view.classList.remove("active"));
+      byId("view-" + btn.dataset.view).classList.add("active");
+    }));
+    const targetInputs = ["currentGrade","targetGrade","finalWeight","earnedPoints","possiblePoints","finalPoints","roundGrade","gradingMode"];
+    targetInputs.forEach(id => byId(id).addEventListener("input", updateTarget));
+    byId("gradingMode").addEventListener("change", () => { byId("pointsFields").classList.toggle("hidden",byId("gradingMode").value !== "points"); updateTarget(); });
+    function num(id) { const n = Number(byId(id).value); return Number.isFinite(n) ? n : 0; }
+    function updateTarget() {
+      let needed;
+      const goal = num("targetGrade");
+      if (byId("gradingMode").value === "points") {
+        const earned = num("earnedPoints"), possible = num("possiblePoints"), final = num("finalPoints");
+        needed = final > 0 ? ((goal/100)*(possible+final)-earned)/final*100 : Infinity;
+      } else {
+        const weight = num("finalWeight")/100;
+        needed = weight > 0 ? (goal-num("currentGrade")*(1-weight))/weight : (goal <= num("currentGrade") ? 0 : Infinity);
+      }
+      const roundUp = byId("roundGrade").checked;
+      if (roundUp && Number.isFinite(needed)) needed = Math.ceil(needed);
+      const result = byId("targetResult");
+      const bounded = Number.isFinite(needed) ? Math.max(0, Math.min(100,needed)) : 0;
+      result.textContent = Number.isFinite(needed) ? `${Math.round(needed*10)/10}%` : "—";
+      byId("targetMeter").style.width = `${bounded}%`;
+      byId("goalDisplay").textContent = `${goal}%`;
+      byId("currentDisplay").textContent = `${num("currentGrade")}%`;
+      let caption, note;
+      if (!Number.isFinite(needed)) { caption=t("checkValues"); note=t("checkValues"); result.style.color="#a85c4f"; }
+      else if (needed <= 0) { caption=t("alreadyThere"); note=t("alreadyThere"); result.style.color="var(--green-dark)"; }
+      else if (needed > 100) { caption=t("impossible"); note=t("planNote"); result.style.color="#ba6b56"; }
+      else { caption=t("needScore"); note=`${needed}% ${t("needPct")}`; result.style.color="var(--green-dark)"; }
+      byId("targetCaption").textContent=caption; byId("targetNote").textContent=note;
+    }
+    byId("resetTarget").addEventListener("click", () => {
+      Object.entries({currentGrade:84,targetGrade:90,finalWeight:25,earnedPoints:420,possiblePoints:500,finalPoints:100}).forEach(([id,value])=>byId(id).value=value);
+      byId("roundGrade").checked=true;byId("gradingMode").value="weighted";byId("pointsFields").classList.add("hidden");updateTarget();
+    });
     ["beforeFinal","finalScore","courseWeight","letterScale"].forEach(id=>byId(id).addEventListener("input",updateCurrent));
-    function getLetter(score,plus){const cuts=plus?[[97,"A+"],[93,"A"],[90,"A−"],[87,"B+"],[83,"B"],[80,"B−"],[77,"C+"],[73,"C"],[70,"C−"],[67,"D+"],[63,"D"],[60,"D−"],[0,"F"]]:[[90,"A"],[80,"B"],[70,"C"],[60,"D"],[0,"F"]];return(cuts.find(([cut])=>score>=cut)||cuts.at(-1))[1]}
-    function updateCurrent(){const before=validNum("beforeFinal",0,100),exam=validNum("finalScore",0,100),weight=validNum("courseWeight",0,100),grade=before*(1-weight/100)+exam*weight/100;byId("courseResult").textContent=`${Math.round(grade*10)/10}%`;const letter=getLetter(grade,byId("letterScale").value==="plusminus");byId("courseLetter").textContent=`${letter} · ${t("greatWork")}`;byId("courseMeter").style.width=`${Math.max(0,Math.min(100,grade))}%`;byId("beforeDisplay").textContent=`${before}%`;byId("finalDisplay").textContent=`${exam}%`;byId("courseNote").textContent=t("courseCounted").replace("{weight}",weight)}
-    byId("resetCurrent").addEventListener("click",()=>{byId("beforeFinal").value=84;byId("finalScore").value=92;byId("courseWeight").value=25;byId("letterScale").value="standard";updateCurrent()});
-    let courses=[{name:"Biology",grade:"A−",credits:4,type:"regular"},{name:"World History",grade:"A",credits:3,type:"regular"},{name:"English Literature",grade:"B+",credits:3,type:"honors"},{name:"Algebra II",grade:"A",credits:3,type:"regular"},{name:"Chemistry",grade:"B",credits:2,type:"ap"}];
     const gradeOptions=["A+","A","A−","B+","B","B−","C+","C","C−","D+","D","D−","F"];
-    function pointsFor(grade,type,scale,plus){const map={"A+":4,"A":4,"A−":3.7,"B+":3.3,"B":3,"B−":2.7,"C+":2.3,"C":2,"C−":1.7,"D+":1.3,"D":1,"D−":.7,"F":0};let value=plus?map[grade]:({"A+":4,"A":4,"A−":3.7,"B+":3.3,"B":3,"B−":2.7,"C+":2.3,"C":2,"C−":1.7,"D+":1.3,"D":1,"D−":.7,"F":0}[grade]??0);if(scale==="plus"&&plus&&grade==="A+")value=4.3;if((scale==="five"||scale==="uc")&&(type==="honors"||type==="ap")&&value>0)value+=1;if(scale==="five"||scale==="uc")value=Math.min(5,value);return value}
-    function renderCourses(){const body=byId("courseRows");body.replaceChildren();courses.forEach((course,index)=>{const tr=document.createElement("tr");const nameCell=document.createElement("td"),name=document.createElement("input");name.value=course.name;name.className="course-name";name.setAttribute("aria-label",t("subject"));name.addEventListener("input",()=>course.name=name.value);nameCell.append(name);const gradeCell=document.createElement("td"),grade=document.createElement("select");grade.setAttribute("aria-label",t("letterGrade"));gradeOptions.forEach(value=>{const option=document.createElement("option");option.value=value;option.textContent=value;grade.append(option)});grade.value=course.grade;grade.className="grade-letter";grade.addEventListener("change",()=>{course.grade=grade.value;renderCourses()});gradeCell.append(grade);const creditsCell=document.createElement("td"),credits=document.createElement("input");credits.type="number";credits.min="0";credits.step=".5";credits.value=course.credits;credits.setAttribute("aria-label",t("credits"));credits.addEventListener("input",()=>{course.credits=Math.max(0,Number(credits.value)||0);updateGPA()});creditsCell.append(credits);const typeCell=document.createElement("td"),type=document.createElement("select");type.setAttribute("aria-label",t("courseType"));[["regular","regular"],["honors","honors"],["ap","ap"]].forEach(([value,key])=>{const option=document.createElement("option");option.value=value;option.textContent=t(key);type.append(option)});type.value=course.type;type.addEventListener("change",()=>{course.type=type.value;renderCourses()});typeCell.append(type);const qualityCell=document.createElement("td");qualityCell.className="quality-cell";const actionCell=document.createElement("td"),remove=document.createElement("button");remove.type="button";remove.className="remove-btn";remove.textContent="×";remove.setAttribute("aria-label",locale==="zh"?"移除课程":"Remove course");remove.addEventListener("click",()=>{courses.splice(index,1);renderCourses()});actionCell.append(remove);tr.append(nameCell,gradeCell,creditsCell,typeCell,qualityCell,actionCell);body.append(tr)});updateGPA()}
-    function updateGPA(){const scale=byId("gpaScale").value,plus=byId("includePlus").checked;let credits=0,quality=0;[...byId("courseRows").rows].forEach((row,index)=>{const course=courses[index];if(!course)return;const points=pointsFor(course.grade,course.type,scale,plus);row.querySelector(".quality-cell").textContent=(points*course.credits).toFixed(1);credits+=course.credits;quality+=points*course.credits});const gpa=credits?quality/credits:0,maxPoints=scale==="plus"?4.3:(scale==="five"||scale==="uc"?5:4);byId("gpaResult").textContent=gpa.toFixed(2);byId("creditTotal").textContent=credits.toFixed(credits%1?1:0);byId("qualityTotal").textContent=quality.toFixed(1);byId("gpaLetter").textContent=getLetter(gpa/maxPoints*100,true);byId("courseCount").textContent=`${courses.length} ${courses.length===1?t("course"):t("courses")}`;renderBars()}
-    function renderBars(){const counts=[["A",0],["B",0],["C",0],["D",0],["F",0]];courses.forEach(c=>{const item=counts.find(([key])=>key===c.grade[0]);if(item)item[1]++});const max=Math.max(1,...counts.map(([,count])=>count)),labels=locale==="zh"?["A 段","B 段","C 段","D 段","F 段"]:["A range","B range","C range","D range","F"];byId("gradeBars").replaceChildren(...counts.map(([,count],i)=>{const item=document.createElement("div");item.className="bar-item";const value=document.createElement("span");value.className="bar-value";value.textContent=count;const bar=document.createElement("div");bar.className="bar";bar.style.height=`${Math.max(6,count/max*60)}px`;if(count===0)bar.style.background="#e9ece6";const label=document.createElement("span");label.className="bar-label";label.textContent=labels[i];item.append(value,bar,label);return item}))}
-    byId("addCourse").addEventListener("click",()=>{courses.push({name:t("courseDefault"),grade:"A",credits:3,type:"regular"});renderCourses()});byId("gpaScale").addEventListener("change",updateGPA);byId("includePlus").addEventListener("change",updateGPA);byId("clearCourses").addEventListener("click",()=>{if(confirm(t("clearConfirm"))){courses=[];renderCourses()}});
-    updateTarget();updateCurrent();renderCourses();
+    const defaultRules={
+      cutoffs:{"A+":97,"A":93,"A−":90,"B+":87,"B":83,"B−":80,"C+":77,"C":73,"C−":70,"D+":67,"D":63,"D−":60,"F":0},
+      points:{"A+":4,"A":4,"A−":3.7,"B+":3.3,"B":3,"B−":2.7,"C+":2.3,"C":2,"C−":1.7,"D+":1.3,"D":1,"D−":.7,"F":0},
+      honorsBonus:1,cap:4
+    };
+    let schoolRules={...defaultRules,cutoffs:{...defaultRules.cutoffs},points:{...defaultRules.points}};
+    let categories=[{name:"Homework",weight:100,scores:"",drop:0}];
+    let savedData={};
+    try { savedData=JSON.parse(localStorage.getItem("gradegarden-data")||"{}"); } catch {}
+    if(Array.isArray(savedData.categories)) categories=savedData.categories;
+    if(savedData.rules) schoolRules={...schoolRules,...savedData.rules,cutoffs:{...schoolRules.cutoffs,...savedData.rules.cutoffs},points:{...schoolRules.points,...savedData.rules.points}};
+    function saveData() {
+      try { localStorage.setItem("gradegarden-data",JSON.stringify({courses,categories,rules:schoolRules})); } catch {}
+    }
+    function getLetter(score,plus,forceCustom=false) {
+      if(forceCustom||byId("letterScale")?.value==="custom") {
+        return gradeOptions.find(letter=>score>=schoolRules.cutoffs[letter])||"F";
+      }
+      const cuts = plus ? [[97,"A+"],[93,"A"],[90,"A−"],[87,"B+"],[83,"B"],[80,"B−"],[77,"C+"],[73,"C"],[70,"C−"],[67,"D+"],[63,"D"],[60,"D−"],[0,"F"]] : [[90,"A"],[80,"B"],[70,"C"],[60,"D"],[0,"F"]];
+      return (cuts.find(([cut])=>score>=cut)||cuts.at(-1))[1];
+    }
+    function updateCurrent() {
+      const before=num("beforeFinal"), exam=num("finalScore"), weight=num("courseWeight");
+      const grade=before*(1-weight/100)+exam*weight/100;
+      byId("courseResult").textContent=`${Math.round(grade*10)/10}%`;
+      const letter=getLetter(grade,byId("letterScale").value!=="standard");
+      byId("courseLetter").textContent=`${letter} · ${t("greatWork")}`;
+      byId("courseMeter").style.width=`${Math.max(0,Math.min(100,grade))}%`;
+      byId("beforeDisplay").textContent=`${before}%`;byId("finalDisplay").textContent=`${exam}%`;
+      byId("courseNote").textContent=t("courseCounted").replace("{weight}",weight);
+    }
+    byId("resetCurrent").addEventListener("click",()=>{byId("beforeFinal").value=84;byId("finalScore").value=92;byId("courseWeight").value=25;byId("letterScale").value="standard";updateCurrent();});
+
+    let courses = [
+      {name:"Biology",grade:"A−",credits:4,type:"regular"},
+      {name:"World History",grade:"A",credits:3,type:"regular"},
+      {name:"English Literature",grade:"B+",credits:3,type:"honors"},
+      {name:"Algebra II",grade:"A",credits:3,type:"regular"},
+      {name:"Chemistry",grade:"B",credits:2,type:"ap"}
+    ];
+    if(Array.isArray(savedData.courses)) courses=savedData.courses;
+    function pointsFor(grade,type,scale,plusEnabled) {
+      let value;
+      if(scale==="custom") value=schoolRules.points[grade]??0;
+      else {
+        value=schoolRules.points[grade]??0;
+        if(!plusEnabled) value=({A:4,B:3,C:2,D:1,F:0}[grade.replace(/[+−-]/g,"")]??0);
+        if(scale==="plus"&&plusEnabled&&grade==="A+") value=4.3;
+      }
+      if((scale==="five"||scale==="uc"||scale==="custom")&&(type==="honors"||type==="ap")&&value>0) value+=Number(schoolRules.honorsBonus)||0;
+      if(scale==="five"||scale==="uc") value=Math.min(5,value);
+      if(scale==="custom") value=Math.min(Number(schoolRules.cap)||4,value);
+      return value;
+    }
+    function renderCourses() {
+      const body=byId("courseRows"); body.replaceChildren();
+      const scale=byId("gpaScale").value, plus=byId("includePlus").checked;
+      courses.forEach((course,index)=>{
+        const tr=document.createElement("tr");
+        const nameCell=document.createElement("td"); const name=document.createElement("input");name.value=course.name;name.className="course-name";name.setAttribute("aria-label",t("subject"));name.addEventListener("input",()=>{course.name=name.value;saveData();});nameCell.append(name);
+        const gradeCell=document.createElement("td"); const grade=document.createElement("select");grade.setAttribute("aria-label",t("letterGrade"));gradeOptions.forEach(value=>{const option=document.createElement("option");option.value=value;option.textContent=value;grade.append(option);});grade.value=course.grade;grade.className="grade-letter";grade.addEventListener("change",()=>{course.grade=grade.value;renderCourses();});gradeCell.append(grade);
+        const creditsCell=document.createElement("td");const credits=document.createElement("input");credits.type="number";credits.min="0";credits.step=".5";credits.value=course.credits;credits.setAttribute("aria-label",t("credits"));credits.addEventListener("input",()=>{course.credits=Math.max(0,Number(credits.value)||0);updateGPA();});creditsCell.append(credits);
+        const typeCell=document.createElement("td");const type=document.createElement("select");type.setAttribute("aria-label",t("courseType"));[["regular","regular"],["honors","honors"],["ap","ap"]].forEach(([value,key])=>{const option=document.createElement("option");option.value=value;option.textContent=t(key);type.append(option);});type.value=course.type;type.addEventListener("change",()=>{course.type=type.value;renderCourses();});typeCell.append(type);
+        const qualityCell=document.createElement("td");qualityCell.className="quality-cell";
+        const actionCell=document.createElement("td");const remove=document.createElement("button");remove.type="button";remove.className="remove-btn";remove.textContent="×";remove.setAttribute("aria-label",locale==="zh"?"移除课程":"Remove course");remove.addEventListener("click",()=>{courses.splice(index,1);renderCourses();});actionCell.append(remove);
+        tr.append(nameCell,gradeCell,creditsCell,typeCell,qualityCell,actionCell);body.append(tr);
+      });
+      updateGPA();
+    }
+    function updateGPA() {
+      const scale=byId("gpaScale").value,plus=byId("includePlus").checked;
+      let credits=0,quality=0;
+      [...byId("courseRows").rows].forEach((row,index)=>{
+        const course=courses[index];if(!course)return;
+        const points=pointsFor(course.grade,course.type,scale,plus);
+        row.querySelector(".quality-cell").textContent=(points*course.credits).toFixed(1);
+        credits+=course.credits;quality+=points*course.credits;
+      });
+      const gpa=credits?quality/credits:0;
+      const maxPoints=scale==="plus"?4.3:(scale==="five"||scale==="uc"?5:(scale==="custom"?Number(schoolRules.cap)||4:4));
+      byId("gpaResult").textContent=gpa.toFixed(2);byId("creditTotal").textContent=credits.toFixed(credits%1?1:0);byId("qualityTotal").textContent=quality.toFixed(1);byId("gpaLetter").textContent=getLetter(gpa/maxPoints*100,true,scale==="custom");
+      byId("courseCount").textContent=`${courses.length} ${courses.length===1?t("course"):t("courses")}`;
+      saveData();
+      renderBars();
+    }
+    function renderBars() {
+      const counts=[["A",0],["B",0],["C",0],["D",0],["F",0]];
+      courses.forEach(c=>{const letter=c.grade[0];const item=counts.find(([key])=>key===letter);if(item)item[1]++;});
+      const max=Math.max(1,...counts.map(([,count])=>count));
+      const labels=locale==="zh"?["A 段","B 段","C 段","D 段","F 段"]:["A range","B range","C range","D range","F"];
+      byId("gradeBars").replaceChildren(...counts.map(([,count],i)=>{
+        const item=document.createElement("div");item.className="bar-item";
+        const value=document.createElement("span");value.className="bar-value";value.textContent=count;
+        const bar=document.createElement("div");bar.className="bar";bar.style.height=`${Math.max(6,count/max*60)}px`;if(count===0)bar.style.background="#e9ece6";
+        const label=document.createElement("span");label.className="bar-label";label.textContent=labels[i];
+        item.append(value,bar,label);return item;
+      }));
+    }
+    function renderCategories() {
+      const root=byId("categoryRows");root.replaceChildren();
+      categories.forEach((category,index)=>{
+        const row=document.createElement("div");row.className="category-row";
+        const field=(label,key,value,type="text",className="")=>{
+          const wrap=document.createElement("div");wrap.className=`compact-field ${className}`.trim();
+          const caption=document.createElement("label");caption.textContent=t(label);
+          const input=document.createElement("input");input.type=type;input.value=value;input.setAttribute("aria-label",t(label));
+          input.addEventListener("input",()=>{category[key]=type==="number"?Number(input.value)||0:input.value;calculateCategories();saveData();});
+          wrap.append(caption,input);return wrap;
+        };
+        const name=field("categoryName","name",category.name);
+        const weight=field("categoryWeight","weight",category.weight,"number");
+        const scores=field("categoryScores","scores",category.scores,"text","scores-field");
+        scores.querySelector("input").placeholder=locale==="zh"?"92, 85, 97":"92, 85, 97";
+        const drop=field("dropLowestCount","drop",category.drop,"number");
+        drop.querySelector("input").min="0";drop.querySelector("input").step="1";
+        const remove=document.createElement("button");remove.type="button";remove.className="remove-btn remove-category";remove.textContent="×";remove.setAttribute("aria-label",locale==="zh"?"移除类别":"Remove category");
+        remove.addEventListener("click",()=>{categories.splice(index,1);renderCategories();saveData();});
+        row.append(name,weight,scores,drop,remove);root.append(row);
+      });
+      calculateCategories();
+    }
+    function calculateCategories() {
+      const total=categories.reduce((sum,item)=>sum+(Number(item.weight)||0),0);
+      byId("categoryWeightTotal").textContent=`${t("weights")}: ${total.toFixed(1)}%`;
+      const validWeights=Math.abs(total-100)<0.01;
+      const averages=[];
+      for(const category of categories) {
+        const scores=String(category.scores||"").split(",").map(value=>value.trim()).filter(Boolean).map(Number).filter(value=>Number.isFinite(value)&&value>=0);
+        if((Number(category.weight)||0)>0&&!scores.length) {
+          byId("categoryGrade").textContent="—";byId("categoryStatus").textContent=t("scoresMissing");return;
+        }
+        if(scores.length) {
+          scores.sort((a,b)=>a-b);
+          const excluded=Math.min(Math.max(0,Math.floor(Number(category.drop)||0)),scores.length-1);
+          const kept=scores.slice(excluded);
+          const average=kept.reduce((sum,value)=>sum+value,0)/kept.length;
+          averages.push({weight:Number(category.weight)||0,average});
+        }
+      }
+      if(!validWeights) {
+        byId("categoryGrade").textContent="—";byId("categoryStatus").textContent=t("weightsInvalid");return;
+      }
+      if(!averages.length) {
+        byId("categoryGrade").textContent="—";byId("categoryStatus").textContent=t("scoresMissing");return;
+      }
+      const grade=averages.reduce((sum,item)=>sum+item.average*item.weight,0)/100;
+      byId("categoryGrade").textContent=`${grade.toFixed(2)}%`;
+      byId("categoryStatus").textContent=t("weightsValid");
+    }
+    function updateCumulativePlan() {
+      const current=Math.max(0,Number(byId("currentCumGpa").value)||0);
+      const completed=Math.max(0,Number(byId("completedCredits").value)||0);
+      const target=Math.max(0,Number(byId("targetCumGpa").value)||0);
+      const planned=Math.max(0,Number(byId("plannedCredits").value)||0);
+      const scale=byId("gpaScale").value;
+      const max=scale==="custom"?(Number(schoolRules.cap)||4):scale==="five"||scale==="uc"?5:scale==="plus"?4.3:4;
+      const status=byId("cumulativeStatus"),result=byId("requiredTermGpa");
+      if(!planned){status.textContent=t("needCredits");result.textContent="—";return;}
+      const needed=(target*(completed+planned)-current*completed)/planned;
+      if(needed<=0){status.textContent=t("alreadyReached");result.textContent="0.00";return;}
+      status.textContent=needed>max?t("goalImpossible"):t("goalPossible");
+      result.textContent=`${needed.toFixed(2)} / ${max.toFixed(1)}`;
+    }
+    function renderRuleRows() {
+      const body=byId("ruleRows");body.replaceChildren();
+      gradeOptions.forEach(letter=>{
+        const row=document.createElement("tr"),grade=document.createElement("td"),cutoff=document.createElement("td"),points=document.createElement("td");
+        grade.textContent=letter;
+        [[cutoff,"cutoffs",0,100,1],[points,"points",0,6,.1]].forEach(([cell,key,min,max,step])=>{
+          const input=document.createElement("input");input.type="number";input.min=min;input.max=max;input.step=step;input.value=schoolRules[key][letter];input.setAttribute("aria-label",`${letter} ${t(key==="cutoffs"?"minimumPercent":"gradePoints")}`);
+          input.addEventListener("input",()=>{schoolRules[key][letter]=Math.min(max,Math.max(min,Number(input.value)||0));saveData();updateCurrent();updateGPA();updateCumulativePlan();});
+          cell.append(input);
+        });
+        row.append(grade,cutoff,points);body.append(row);
+      });
+      byId("honorsBonus").value=schoolRules.honorsBonus;byId("gpaCap").value=schoolRules.cap;
+    }
+    byId("addCategory").addEventListener("click",()=>{categories.push({name:t("categoryDefault"),weight:0,scores:"",drop:0});renderCategories();saveData();});
+    ["currentCumGpa","completedCredits","targetCumGpa","plannedCredits"].forEach(id=>byId(id).addEventListener("input",updateCumulativePlan));
+    ["honorsBonus","gpaCap"].forEach(id=>byId(id).addEventListener("input",()=>{
+      schoolRules[id==="honorsBonus"?"honorsBonus":"cap"]=Math.max(0,Number(byId(id).value)||0);
+      saveData();updateGPA();updateCumulativePlan();updateCurrent();
+    }));
+    byId("resetRules").addEventListener("click",()=>{schoolRules={...defaultRules,cutoffs:{...defaultRules.cutoffs},points:{...defaultRules.points}};renderRuleRows();saveData();updateGPA();updateCumulativePlan();updateCurrent();});
+    byId("addCourse").addEventListener("click",()=>{courses.push({name:t("courseDefault"),grade:"A",credits:3,type:"regular"});renderCourses();});
+    byId("includePlus").addEventListener("change",updateGPA);
+    byId("clearCourses").addEventListener("click",()=>{if(confirm(t("clearConfirm"))){courses=[];renderCourses();}});
+    byId("letterScale").addEventListener("change",updateCurrent);
+    byId("gpaScale").addEventListener("change",()=>{updateGPA();updateCumulativePlan();});
+    updateAcademicTerm();updateTarget();updateCurrent();renderCategories();renderRuleRows();renderCourses();updateCumulativePlan();
   </script>
 </body>
 </html>
